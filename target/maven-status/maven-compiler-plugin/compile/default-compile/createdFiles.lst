@@ -1,0 +1,7 @@
+pe/opm/bpm/taller/controller/FiscalizableRestController.class
+pe/opm/bpm/taller/model/Auditor.class
+pe/opm/bpm/taller/Application.class
+pe/opm/bpm/taller/model/Fiscalizable.class
+pe/opm/bpm/taller/service/FiscalizableServiceImpl.class
+pe/opm/bpm/taller/controller/AuditorRestController.class
+pe/opm/bpm/taller/service/FiscalizableService.class

@@ -1,0 +1,125 @@
+package pe.opm.bpm.taller.service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import pe.opm.bpm.taller.model.Auditor;
+import pe.opm.bpm.taller.model.Fiscalizable;
+
+@Service
+public class FiscalizableServiceImpl implements FiscalizableService {
+
+	public static Map<String, Fiscalizable> fiscalizables
+	; 
+	public static Map<String, Auditor> auditores; 
+		
+	public List<Fiscalizable> listaFiscalizable() {
+		// TODO Auto-generated method stub
+		return new ArrayList<Fiscalizable>(fiscalizables.values());
+	}
+
+	public Fiscalizable obtenerFiscalizable(String ruc) {
+		// TODO Auto-generated method stub
+		return fiscalizables.get(ruc);
+	}
+	
+	public int actualizarFiscalizable(String ruc, Fiscalizable f) {
+		// TODO Auto-generated method stub
+		fiscalizables.put(ruc, f);
+		
+		return 1;
+	}
+
+
+	public int insertarFiscalizable(Fiscalizable f) {
+		// TODO Auto-generated method stub
+		fiscalizables.put(f.getRuc(), f);
+		return 1;
+	}
+
+	
+	public List<Auditor> listaAuditores() {
+				
+		return new ArrayList<Auditor>(auditores.values());
+	}
+
+	public List<Auditor> listaAuditores(String supervision) {
+		// TODO Auto-generated method stub
+		
+		List<Auditor> lista = new ArrayList<Auditor>(auditores.values());
+		List<Auditor> listaTemp = new ArrayList<Auditor>();
+		
+		for (int i = 0; i < lista.size(); i++) {
+			Auditor a = lista.get(i);
+			
+			if(a.getSupervision().equalsIgnoreCase(supervision))
+				listaTemp.add( a );
+						
+		}
+		
+		Map<String, Auditor> map;
+		
+		if(listaTemp.size()==0){
+			map = getAuditores(supervision);
+			auditores.putAll(map);
+			return new ArrayList<Auditor>(map.values());
+		}else{
+			return listaTemp;
+		}
+		
+	}
+	
+	
+	public static int n = 0;
+	static
+    {
+		fiscalizables = new HashMap<String, Fiscalizable>();
+		fiscalizables.put("10312345678", new Fiscalizable("10312345678", "SagaFallabella", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("10434512334", new Fiscalizable("10434512334", "SODIMAC SAC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", false));
+		fiscalizables.put("10312345456", new Fiscalizable("10312345456", "IBK", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("10312345654", new Fiscalizable("10312345654", "Juan Reyes", "REG.LIMA", new Auditor(), "PERSONA NATURAL", "AV. ERD 352", false));
+		fiscalizables.put("10312345789", new Fiscalizable("10312345789", "BBVA", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("10312345890", new Fiscalizable("10312345890", "RIPLEY SAC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("10312345423", new Fiscalizable("10312345423", "ALICORP", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("10312345157", new Fiscalizable("10312345157", "HSBC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", false));
+		
+		auditores = new HashMap<String, Auditor>();
+		auditores.putAll( getAuditores("REG.LIMA.SUP1") );
+		auditores.putAll( getAuditores("REG.AQP.SUP1") );
+		
+		
+    }
+	
+	private static Map<String, Auditor> getAuditores(String supervision) {
+		
+		int na = (int) (Math.random() * 10) +1;
+		String[] nom = new String[]{"Juan","Carlos","Ricardo","Jose","Luis"};
+		String[] ape = new String[]{"Guerra","Ramirez","Mazza","Chavez",
+									"Becerra","Sosaya","Cardenas","Izaquirre","Caceres","Lujan"};
+		
+		Map<String, Auditor> map = new HashMap<String, Auditor>();
+		
+		for(int i = 0 ; i<na ; i++){
+			
+			String nr = (int) (Math.random() * 100) +"";
+			String nroRegistro = "QW" + nr;
+			if(!auditores.containsKey(nroRegistro))
+			map.put("QW", new Auditor(nroRegistro, nom[((int) (Math.random() * 100))%5], 
+					ape[((int) (Math.random() * 100))%10], ape[((int) (Math.random() * 100))%10], 
+					supervision, (int) (Math.random() * 10) ));
+		}
+		
+		return map;
+	}
+
+	@Override
+	public int eliminarFiscalizable(String ruc) {
+		// TODO Auto-generated method stub
+		
+		return 0;
+	}
+}

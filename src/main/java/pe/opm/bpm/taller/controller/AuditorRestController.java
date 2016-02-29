@@ -14,8 +14,7 @@ import pe.opm.bpm.taller.service.FiscalizableService;
 @RestController
 public class AuditorRestController {
 
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
+
 
 	@Autowired
 	private FiscalizableService service;

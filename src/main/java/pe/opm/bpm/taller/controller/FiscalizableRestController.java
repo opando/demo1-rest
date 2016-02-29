@@ -18,75 +18,64 @@ import pe.opm.bpm.taller.service.FiscalizableService;
 
 
 @RestController
-@RequestMapping("/auditoria/fiscalizables")
+//@RequestMapping("/fiscalizables")
 public class FiscalizableRestController {
 
-    
-    private final AtomicLong counter = new AtomicLong();
+
     
     @Autowired
     private FiscalizableService service;
     
-
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<Fiscalizable> listaFiscalizables() {
-//    	System.out.println("##### GET path : /auditoria/fiscalizables | date " + new Date());
-//        return service.listaFiscalizable();
-//    }
-    
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Fiscalizable> obtenerFiscalizablesFields(@RequestParam(value="f", required = false) String fields) {
+    @RequestMapping(value="/fiscalizables",method = RequestMethod.GET)
+    public List<Fiscalizable> obtenerFiscalizables() {
     	
-    	System.out.println("##### path : GET /auditoria/fiscalizables ");
+    	System.out.println("##### path : GET /fiscalizables ");
     	
-    	System.out.println("##### param : f : " + fields);
+    
     	
         return service.listaFiscalizable();
     }
     
-    @RequestMapping(value ="/{ruc}", method = RequestMethod.GET)
-    public Fiscalizable obtenerFiscalizablesxParametro(@PathVariable String ruc, 
-    		    		@RequestParam(value="intendencia", required = false) String intendencia,
-    		    		@RequestParam(value="domicilioBloqueado", required = false) Boolean domicilioBloqueado,
-    		    		@RequestParam(value="tipoContribuyente", required = false) String tipoContribuyente) {
+/*    @RequestMapping(value ="/fiscalizables", method = RequestMethod.GET)
+    public Fiscalizable obtenerFiscalizablesxParametro(
+    					@RequestParam(value="numRuc", required = false) String numRuc
+    		    		) {
     	
-    	System.out.println("##### path : GET /auditoria/fiscalizables/{ruc}?intendencia=&domicilioBloqueado= ");
-    	System.out.println("##### param : ruc : " + ruc);
-    	System.out.println("##### param - intendencia : " + intendencia);
-    	System.out.println("##### param - domicilioBloqueado : " + domicilioBloqueado);
+    	System.out.println("##### path : GET /fiscalizables?numRuc= ");
+    	System.out.println("##### param : numRuc : " + numRuc);
     	
-        return service.obtenerFiscalizable(ruc);
-    }
+    	
+        return service.obtenerFiscalizable(numRuc);
+    }*/
     
     
-    @RequestMapping( method = RequestMethod.POST)
-    public int actualizarFiscalizables(@RequestBody Fiscalizable f) {
+    @RequestMapping(value ="/fiscalizables", method = RequestMethod.POST)
+    public int actualizarFiscalizables(@RequestBody Fiscalizable fiscalizable) {
     	
     	System.out.println("##### path : POST /auditoria/fiscalizables ");
     	
-    	System.out.println("##### param : Fiscalizable json : " + f);
+    	System.out.println("##### param : Fiscalizable json : " + fiscalizable);
     	
-        return service.insertarFiscalizable(f);
+        return service.insertarFiscalizable(fiscalizable);
     }
     
-    @RequestMapping(value ="/{ruc}", method = RequestMethod.PUT)
-    public int actualizarFiscalizables(@PathVariable String ruc, @RequestBody Fiscalizable f) {
+    @RequestMapping(value ="/{idFiscalizable}", method = RequestMethod.PUT)
+    public int actualizarFiscalizables(@PathVariable String idFiscalizable, @RequestBody Fiscalizable fiscalizable) {
     	
-    	System.out.println("##### path : PUT /auditoria/fiscalizables/{ruc} ");
-    	System.out.println("##### param : ruc : " + ruc);
-    	System.out.println("##### param : Fiscalizable json : " + f);
+    	System.out.println("##### path : PUT /fiscalizables/{idFiscalizable} ");
+    	System.out.println("##### param : idFiscalizable : " + idFiscalizable);
+    	System.out.println("##### param : Fiscalizable json : " + fiscalizable);
     	
-        return service.actualizarFiscalizable(ruc, f);
+        return service.actualizarFiscalizable(idFiscalizable, fiscalizable);
     }
     
-    @RequestMapping(value ="/{ruc}", method = RequestMethod.DELETE)
-    public int eliminarFiscalizables(@PathVariable String ruc) {
+    @RequestMapping(value ="/{idFiscalizable}", method = RequestMethod.DELETE)
+    public int eliminarFiscalizables(@PathVariable String idFiscalizable) {
     	
-    	System.out.println("##### path : DELETE /auditoria/fiscalizables/"+ruc);
+    	System.out.println("##### path : DELETE /fiscalizables/"+idFiscalizable);
     	
-    	System.out.println("##### pathVariable : ruc  : " + ruc);
+    	System.out.println("##### pathVariable : idFiscalizable  : " + idFiscalizable);
     	
-        return service.eliminarFiscalizable(ruc);
+        return service.eliminarFiscalizable(idFiscalizable);
     }
 }

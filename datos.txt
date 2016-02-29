@@ -1,1 +1,4 @@
-http://localhost:8080/auditoria/fiscalizables
+$gradle bootrun
+url
+===
+http://localhost:8080/fiscalizables

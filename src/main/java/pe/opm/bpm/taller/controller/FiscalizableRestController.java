@@ -18,10 +18,8 @@ import pe.opm.bpm.taller.service.FiscalizableService;
 
 
 @RestController
-//@RequestMapping("/fiscalizables")
+@RequestMapping(value="/api")
 public class FiscalizableRestController {
-
-
     
     @Autowired
     private FiscalizableService service;
@@ -36,8 +34,9 @@ public class FiscalizableRestController {
         return service.listaFiscalizable();
     }
     
-/*    @RequestMapping(value ="/fiscalizables", method = RequestMethod.GET)
+    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.GET)
     public Fiscalizable obtenerFiscalizablesxParametro(
+    					@PathVariable String idFiscalizable,
     					@RequestParam(value="numRuc", required = false) String numRuc
     		    		) {
     	
@@ -46,7 +45,7 @@ public class FiscalizableRestController {
     	
     	
         return service.obtenerFiscalizable(numRuc);
-    }*/
+    }
     
     
     @RequestMapping(value ="/fiscalizables", method = RequestMethod.POST)
@@ -59,7 +58,7 @@ public class FiscalizableRestController {
         return service.insertarFiscalizable(fiscalizable);
     }
     
-    @RequestMapping(value ="/{idFiscalizable}", method = RequestMethod.PUT)
+    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.PUT)
     public int actualizarFiscalizables(@PathVariable String idFiscalizable, @RequestBody Fiscalizable fiscalizable) {
     	
     	System.out.println("##### path : PUT /fiscalizables/{idFiscalizable} ");
@@ -69,7 +68,7 @@ public class FiscalizableRestController {
         return service.actualizarFiscalizable(idFiscalizable, fiscalizable);
     }
     
-    @RequestMapping(value ="/{idFiscalizable}", method = RequestMethod.DELETE)
+    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.DELETE)
     public int eliminarFiscalizables(@PathVariable String idFiscalizable) {
     	
     	System.out.println("##### path : DELETE /fiscalizables/"+idFiscalizable);

@@ -25,7 +25,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    //compile("org.springframework.boot:spring-boot-starter-web")
+    
+    compile group: 'commons-lang', name: 'commons-lang' , version : '2.6'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    /*compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }*/
     testCompile("junit:junit")
 }
 

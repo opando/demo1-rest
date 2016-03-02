@@ -29,6 +29,10 @@ dependencies {
     
     compile group: 'commons-lang', name: 'commons-lang' , version : '2.6'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile(group: 'io.springfox', name: 'springfox-swagger-ui', version: springfox_version)
+    compile(group: 'io.springfox', name: 'springfox-swagger2', version: springfox_version){
+        exclude module: 'mapstruct'
+    }
     /*compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web') {
         exclude module: 'spring-boot-starter-tomcat'
     }*/

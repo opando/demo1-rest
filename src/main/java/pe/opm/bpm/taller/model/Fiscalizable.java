@@ -1,5 +1,7 @@
 package pe.opm.bpm.taller.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class Fiscalizable {
 	
 	private String ruc;
@@ -35,6 +37,7 @@ public class Fiscalizable {
 		return ruc;
 	}
 
+	@ApiModelProperty(notes = "numero ruc", required = false)
 	public void setRuc(String ruc) {
 		this.ruc = ruc;
 	}

@@ -1,10 +1,17 @@
 package pe.opm.bpm.taller.controller;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +31,18 @@ public class FiscalizableRestController {
     @Autowired
     private FiscalizableService service;
     
-    @RequestMapping(value="/fiscalizables",method = RequestMethod.GET)
+    @ApiOperation(value = "obtenerFiscalizables", nickname = "obtenerFiscalizables")
+    
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "name", value = "User's name", required = false, dataType = "string", paramType = "query", defaultValue="Niklas")
+      })
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Success", response = Fiscalizable.class),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})     
+    @RequestMapping(value="/fiscalizables",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Fiscalizable> obtenerFiscalizables() {
     	
     	System.out.println("##### path : GET /fiscalizables ");

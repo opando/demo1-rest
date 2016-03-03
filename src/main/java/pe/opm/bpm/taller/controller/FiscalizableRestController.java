@@ -25,23 +25,12 @@ import pe.opm.bpm.taller.service.FiscalizableService;
 
 
 @RestController
-@RequestMapping(value="/api")
 public class FiscalizableRestController {
     
     @Autowired
     private FiscalizableService service;
     
-    @ApiOperation(value = "obtenerFiscalizables", nickname = "obtenerFiscalizables")
-    
-    @ApiImplicitParams({
-        @ApiImplicitParam(name = "name", value = "User's name", required = false, dataType = "string", paramType = "query", defaultValue="Niklas")
-      })
-    @ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Success", response = Fiscalizable.class),
-            @ApiResponse(code = 401, message = "Unauthorized"),
-            @ApiResponse(code = 403, message = "Forbidden"),
-            @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Failure")})     
+    @ApiOperation(value = "obtenerFiscalizables", nickname = "obtenerFiscalizables")         
     @RequestMapping(value="/fiscalizables",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Fiscalizable> obtenerFiscalizables() {
     	
@@ -54,20 +43,19 @@ public class FiscalizableRestController {
     
     @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.GET)
     public Fiscalizable obtenerFiscalizablesxParametro(
-    					@PathVariable String idFiscalizable,
-    					@RequestParam(value="numRuc", required = false) String numRuc
+    					@PathVariable String idFiscalizable
     		    		) {
     	
-    	System.out.println("##### path : GET /fiscalizables?numRuc= ");
-    	System.out.println("##### param : numRuc : " + numRuc);
+    	System.out.println("##### path : GET /fiscalizables , idFiscalizable= " + idFiscalizable);
     	
     	
-        return service.obtenerFiscalizable(numRuc);
+    	
+        return service.obtenerFiscalizable(idFiscalizable);
     }
     
     
     @RequestMapping(value ="/fiscalizables", method = RequestMethod.POST)
-    public int actualizarFiscalizables(@RequestBody Fiscalizable fiscalizable) {
+    public String actualizarFiscalizables(@RequestBody Fiscalizable fiscalizable) {
     	
     	System.out.println("##### path : POST /auditoria/fiscalizables ");
     	
@@ -77,7 +65,7 @@ public class FiscalizableRestController {
     }
     
     @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.PUT)
-    public int actualizarFiscalizables(@PathVariable String idFiscalizable, @RequestBody Fiscalizable fiscalizable) {
+    public String actualizarFiscalizables(@PathVariable String idFiscalizable, @RequestBody Fiscalizable fiscalizable) {
     	
     	System.out.println("##### path : PUT /fiscalizables/{idFiscalizable} ");
     	System.out.println("##### param : idFiscalizable : " + idFiscalizable);

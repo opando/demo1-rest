@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class Fiscalizable {
 	
+	private String idFiscalizable;
 	private String ruc;
 
 	private String razonSocial;
@@ -20,10 +21,11 @@ public class Fiscalizable {
 
 	public Fiscalizable(){}
 	
-	public Fiscalizable(String ruc, String razonSocial, String intendencia,
+	public Fiscalizable(String idFiscalizable, String ruc, String razonSocial, String intendencia,
 			Auditor auditor, String tipoContribuyente, String direccion,
 			Boolean domicilioBloqueado) {
 		super();
+		this.setIdFiscalizable(idFiscalizable);
 		this.ruc = ruc;
 		this.razonSocial = razonSocial;
 		this.intendencia = intendencia;
@@ -88,6 +90,14 @@ public class Fiscalizable {
 
 	public void setDomicilioBloqueado(Boolean domicilioBloqueado) {
 		this.domicilioBloqueado = domicilioBloqueado;
+	}
+
+	public String getIdFiscalizable() {
+		return idFiscalizable;
+	}
+
+	public void setIdFiscalizable(String idFiscalizable) {
+		this.idFiscalizable = idFiscalizable;
 	}
 	
 }

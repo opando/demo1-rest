@@ -22,23 +22,25 @@ public class FiscalizableServiceImpl implements FiscalizableService {
 		return new ArrayList<Fiscalizable>(fiscalizables.values());
 	}
 
-	public Fiscalizable obtenerFiscalizable(String ruc) {
+	public Fiscalizable obtenerFiscalizable(String idFiscalizable) {
 		// TODO Auto-generated method stub
-		return fiscalizables.get(ruc);
+		return fiscalizables.get(idFiscalizable);
 	}
 	
-	public int actualizarFiscalizable(String ruc, Fiscalizable f) {
+	public String actualizarFiscalizable(String idFiscalizable, Fiscalizable f) {
 		// TODO Auto-generated method stub
-		fiscalizables.put(ruc, f);
+		f.setIdFiscalizable(idFiscalizable);
 		
-		return 1;
+		fiscalizables.put(idFiscalizable, f);
+		
+		return f.getIdFiscalizable();
 	}
 
 
-	public int insertarFiscalizable(Fiscalizable f) {
+	public String insertarFiscalizable(Fiscalizable f) {
 		// TODO Auto-generated method stub
-		fiscalizables.put(f.getRuc(), f);
-		return 1;
+		fiscalizables.put(f.getIdFiscalizable(), f);
+		return f.getIdFiscalizable();
 	}
 
 	
@@ -78,14 +80,14 @@ public class FiscalizableServiceImpl implements FiscalizableService {
 	static
     {
 		fiscalizables = new HashMap<String, Fiscalizable>();
-		fiscalizables.put("10312345678", new Fiscalizable("10312345678", "SagaFallabella", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
-		fiscalizables.put("10434512334", new Fiscalizable("10434512334", "SODIMAC SAC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", false));
-		fiscalizables.put("10312345456", new Fiscalizable("10312345456", "IBK", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
-		fiscalizables.put("10312345654", new Fiscalizable("10312345654", "Juan Reyes", "REG.LIMA", new Auditor(), "PERSONA NATURAL", "AV. ERD 352", false));
-		fiscalizables.put("10312345789", new Fiscalizable("10312345789", "BBVA", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
-		fiscalizables.put("10312345890", new Fiscalizable("10312345890", "RIPLEY SAC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
-		fiscalizables.put("10312345423", new Fiscalizable("10312345423", "ALICORP", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
-		fiscalizables.put("10312345157", new Fiscalizable("10312345157", "HSBC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", false));
+		fiscalizables.put("1", new Fiscalizable("1","10312345678", "SagaFallabella", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("2", new Fiscalizable("2","10434512334", "SODIMAC SAC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", false));
+		fiscalizables.put("3", new Fiscalizable("3","10312345456", "IBK", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("4", new Fiscalizable("4","10312345654", "Juan Reyes", "REG.LIMA", new Auditor(), "PERSONA NATURAL", "AV. ERD 352", false));
+		fiscalizables.put("5", new Fiscalizable("5","10312345789", "BBVA", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("6", new Fiscalizable("6","10312345890", "RIPLEY SAC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("7", new Fiscalizable("7","10312345423", "ALICORP", "REG.LIMA", new Auditor(), "PERSONA JURIDICA", "JR XYZ", true));
+		fiscalizables.put("8", new Fiscalizable("8","10312345157", "HSBC", "REG.AQP", new Auditor(), "PERSONA JURIDICA", "JR XYZ", false));
 		
 		auditores = new HashMap<String, Auditor>();
 		auditores.putAll( getAuditores("REG.LIMA.SUP1") );
@@ -117,9 +119,9 @@ public class FiscalizableServiceImpl implements FiscalizableService {
 	}
 
 	@Override
-	public int eliminarFiscalizable(String ruc) {
+	public int eliminarFiscalizable(String idFiscalizable) {
 		// TODO Auto-generated method stub
-		
+		fiscalizables.remove(idFiscalizable);
 		return 0;
 	}
 }

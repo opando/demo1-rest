@@ -9,13 +9,13 @@ public interface FiscalizableService {
 
 	public List<Fiscalizable> listaFiscalizable() ;
 	
-	public Fiscalizable obtenerFiscalizable(String ruc);
+	public Fiscalizable obtenerFiscalizable(String idFiscalizable);
 	
-	public int actualizarFiscalizable(String ruc, Fiscalizable f) ;
+	public String actualizarFiscalizable(String idFiscalizable, Fiscalizable f) ;
 
-	public int insertarFiscalizable(Fiscalizable f);
+	public String insertarFiscalizable(Fiscalizable f);
 
 	public List<Auditor> listaAuditores();
 
-	public int eliminarFiscalizable(String ruc);
+	public int eliminarFiscalizable(String idFiscalizable);
 }

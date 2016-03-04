@@ -18,7 +18,7 @@ public class AuditorRestController {
 	@Autowired
 	private FiscalizableService service;
 
-	@RequestMapping(value = "/auditoria/auditores", method = RequestMethod.GET)
+	@RequestMapping(value = "/auditores", method = RequestMethod.GET)
 	public List<Auditor> listaAuditores() {
 		System.out.println("##### path : GET /auditoria/auditores");
 		return service.listaAuditores();

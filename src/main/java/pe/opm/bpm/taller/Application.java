@@ -30,10 +30,10 @@ public class Application {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)        		
-        		.groupName("fisca-api")
+        		.groupName("demo-iib-api")
         		.select()        		
         		.apis(RequestHandlerSelectors.any())
-                .paths(paths())
+                .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
                 
@@ -47,7 +47,11 @@ public class Application {
 	private Predicate<String> paths() {
         return or(
             regex("/fiscalizables.*"),
-            regex("/auditores.*")
+            regex("/auditores.*"),
+            regex("/cuentas.*"),
+            regex("/debitar.*"),
+            regex("/pagar.*"),
+            regex("/recibos.*")
             );
       }
 

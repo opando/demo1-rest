@@ -12,5 +12,5 @@
 # ===================================================================
 
 server:
-  context-path: /serviciostaller
-  port: 8080
+  context-path: /demo-iib
+  port: 8089

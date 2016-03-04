@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.opm.bpm.taller.model.Fiscalizable;
@@ -41,7 +42,7 @@ public class FiscalizableRestController {
         return service.listaFiscalizable();
     }
     
-    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.GET)
+    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public Fiscalizable obtenerFiscalizablesxParametro(
     					@PathVariable String idFiscalizable
     		    		) {
@@ -54,7 +55,7 @@ public class FiscalizableRestController {
     }
     
     
-    @RequestMapping(value ="/fiscalizables", method = RequestMethod.POST)
+    @RequestMapping(value ="/fiscalizables", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public String actualizarFiscalizables(@RequestBody Fiscalizable fiscalizable) {
     	
     	System.out.println("##### path : POST /auditoria/fiscalizables ");
@@ -64,8 +65,9 @@ public class FiscalizableRestController {
         return service.insertarFiscalizable(fiscalizable);
     }
     
-    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.PUT)
-    public String actualizarFiscalizables(@PathVariable String idFiscalizable, @RequestBody Fiscalizable fiscalizable) {
+    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.PUT
+    		,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody String actualizarFiscalizables(@PathVariable String idFiscalizable, @RequestBody Fiscalizable fiscalizable) {
     	
     	System.out.println("##### path : PUT /fiscalizables/{idFiscalizable} ");
     	System.out.println("##### param : idFiscalizable : " + idFiscalizable);
@@ -74,7 +76,8 @@ public class FiscalizableRestController {
         return service.actualizarFiscalizable(idFiscalizable, fiscalizable);
     }
     
-    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.DELETE)
+    @RequestMapping(value ="/fiscalizables/{idFiscalizable}", method = RequestMethod.DELETE,
+    		produces = MediaType.APPLICATION_JSON_VALUE)
     public int eliminarFiscalizables(@PathVariable String idFiscalizable) {
     	
     	System.out.println("##### path : DELETE /fiscalizables/"+idFiscalizable);

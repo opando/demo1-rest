@@ -98,7 +98,7 @@ public class FiscalizableServiceImpl implements FiscalizableService {
 	
 	private static Map<String, Auditor> getAuditores(String supervision) {
 		
-		int na = (int) (Math.random() * 10) +1;
+		int na = (int) (Math.random() * 10) +2;
 		String[] nom = new String[]{"Juan","Carlos","Ricardo","Jose","Luis"};
 		String[] ape = new String[]{"Guerra","Ramirez","Mazza","Chavez",
 									"Becerra","Sosaya","Cardenas","Izaquirre","Caceres","Lujan"};

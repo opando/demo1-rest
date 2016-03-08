@@ -54,7 +54,7 @@ public class ReciboRestController {
     @RequestMapping(value ="/pagosrecibo", method = RequestMethod.POST,
     		produces = MediaType.APPLICATION_JSON_VALUE,
     		consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Map<String, String> debitar(@RequestBody Recibo recibo) {
+    public @ResponseBody Map<String, String> debitar(@RequestBody Recibo recibo) throws Exception {
     	
     	System.out.println("##### path : POST /pagarecibo ");
     	

@@ -52,7 +52,7 @@ public class CuentaRestController {
     
     @RequestMapping(value ="/debitar", method = RequestMethod.POST
     		,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody Map<String, String> debitar(@RequestBody Debito debito) {
+    public @ResponseBody Map<String, String> debitar(@RequestBody Debito debito) throws Exception {
     	
     	System.out.println("##### path : POST /debitar ");
     	
@@ -60,6 +60,20 @@ public class CuentaRestController {
     	
     	Map<String, String> map = new HashMap<String, String>();
 		map.put("idCuenta", service.actualizarCuenta(debito));
+		
+        return map ;
+    }
+    
+    @RequestMapping(value ="/extornar", method = RequestMethod.POST
+    		,produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody Map<String, String> extorno(@RequestBody Debito debito) throws Exception {
+    	
+    	System.out.println("##### path : POST /debitar ");
+    	
+    	System.out.println("##### param : debitar json : " + debito);
+    	
+    	Map<String, String> map = new HashMap<String, String>();
+		map.put("idCuenta", service.extornoCuenta(debito));
 		
         return map ;
     }

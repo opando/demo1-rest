@@ -46,18 +46,39 @@ public class DummyServiceImpl implements DummyService {
 	}
 
 	@Override
-	public Cuenta obtenerCuenta(String idCuenta) {
+	public Cuenta obtenerCuenta(String idCuenta) throws Exception {
 		// TODO Auto-generated method stub
-		return cuentas.get(idCuenta);
+		Cuenta c  = cuentas.get(idCuenta);
+		
+		if (c==null) {
+			throw new Exception();
+		}
+		return c;
 	}
 
 	@Override
-	public String actualizarCuenta(Debito debito) {
+	public String actualizarCuenta(Debito debito) throws Exception {
 		
 		
 		Cuenta c = obtenerCuenta(debito.getIdCuenta());
 		
+		
 		c.setSaldo( c.getSaldo() - debito.getMontoDebito()  );
+		
+		
+		cuentas.put(c.getIdCuenta(), c);
+		
+		return c.getIdCuenta();	
+	}
+	
+	@Override
+	public String extornoCuenta(Debito debito) throws Exception {
+		
+		
+		Cuenta c = obtenerCuenta(debito.getIdCuenta());
+		
+		
+		c.setSaldo( c.getSaldo() + debito.getMontoDebito()  );
 		
 		
 		cuentas.put(c.getIdCuenta(), c);
@@ -72,33 +93,35 @@ public class DummyServiceImpl implements DummyService {
 	}
 
 	@Override
-	public Recibo obtenerRecibo(String idRecibo) {
+	public Recibo obtenerRecibo(String idRecibo) throws Exception {
 		// TODO Auto-generated method stub
-		return recibos.get(idRecibo);
+		Recibo r = recibos.get(idRecibo);
+		
+		if (r==null) {
+			throw new Exception();
+		}
+		return r;
 	}
 
 	@Override
-	public String actualizarRecibo(String idRecibo, Recibo recibo) {
+	public String actualizarRecibo(String idRecibo, Recibo recibo) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String pagarRecibo(Recibo recibo) {
+	public String pagarRecibo(Recibo recibo)throws Exception {
 		
 		Recibo r = obtenerRecibo(recibo.getIdRecibo());
 		
-		if (Double.compare(r.getMonto(),0.0000)>0) {
+		if (Double.compare(r.getMonto(),0.00)>0) {
 			r.setMonto( r.getMonto() - recibo.getMonto()  );
 			
-			if (Double.compare(0.0000, r.getMonto())<0) {
+			if (Double.compare(0.00, r.getMonto())==0) {
 				r.setEstado("1");
 			}
-		}
-		
-		
-		
-		
+		}	
+				
 		
 		recibos.put(r.getIdRecibo(), r);
 		
